@@ -2,7 +2,7 @@
   "name": "cege0043-app",
   "version": "1.0.0",
   "description": "Template repository for the app (front end) code for CEGE0043",
-  "main": "app.js",
+  "main": "dataAPI.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ucl-geospatial-22-23/cege0043-app-template.git"
@@ -23,11 +23,17 @@
     "jsdoc": "^4.0.2",
     "jsdoc-to-markdown": "^8.0.0",
     "path": "^0.12.7",
+    "pg": "^8.11.3",
     "request-ip": "^3.3.0"
   },
   "scripts": {
-    "generate-docs": "jsdoc -c ./jsdoc.json",
-    "test": "jest --verbose --passWithNoTests /js",
+    "start": "nodemon --env-file=.env dataAPI.js",
+    "generate-docs": "jsdoc -c ./jsdoc.conf.json",
+    "test": "jest --verbose --passWithNoTests /test",
     "coverage": "jest --collectCoverage --passWithNoTests"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0",
+    "supertest": "^6.3.4"
   }
 }
