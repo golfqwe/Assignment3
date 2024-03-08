@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>UCESSUV UCESSUV</title>
+    <title style="font-weight: bold;">UCXXXXX ucxxxxx</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -140,98 +140,46 @@
                         </div>
                     </div>
                 </nav>
+
                 <div class="navbar-nav">
-                    <!-- Divider -->
-                    <hr class="sidebar-divider">
-                    <ul class="nav flex-column">
-
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Menu 1</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#" onclick="showDialog('layerToLoad');">Menu 2</a>
-                                <a class="dropdown-item" onclick="menu3();">Menu 3</a>
-                            </div>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Menu 4</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" onclick="showDialog('thumbnail');">Menu 5</a>
-                                <a class="dropdown-item" onclick="showDialog('allLayers');">Menu 6</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Menu 7</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" onclick="menu8();">Menu 8</a>
-                                <a class="dropdown-item" onclick="menu9();">Menu 9</a>
-                            </div>
-                        </li>
-                    </ul>
 
 
                     <div class="nav-item dropdown">
+
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                                 class="fa fa-laptop me-2"></i>Show Data</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a class="dropdown-item" class="dropdown-item" href="#" onclick="showBusStops()" ;>Show
-                                BusStops</a>
-                            <div class="dropdown-menu bg-transparent border-0">
-                                <a class="dropdown-item" class="dropdown-item" href="#" onclick="showBusStopsStyled()"
-                                    ;>Show BusStops Styled</a>
-                                <div class="dropdown-menu bg-transparent border-0">
-                                    <a class="dropdown-item" class="dropdown-item" href="#" onclick="removeBusStops()"
-                                        ;>Remove BusStops</a>
-                                    <div class="dropdown-menu bg-transparent border-0">
-                                        <a class="dropdown-item" class="dropdown-item" href="#"
-                                            onclick="showEthernetStyled()" ;>Show Ethernet Styled</a>
-                                        <div class="dropdown-menu bg-transparent border-0">
-                                            <a class="dropdown-item" class="dropdown-item" href="#"
-                                                onclick="removeEthernet()" ;>Remove Ethernet</a>
-
-
-                                        </div>
-                                    </div>
-
-
-
-                                    <div class="nav-item dropdown d-sm-down">
-                                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                                                class="fa fa-laptop me-2"></i>Screen Size Check</a>
-                                        <div class="dropdown-menu bg-transparent border-0">
-
-                                            <!-- only display when screen width is medium -->
-                                            <!-- default with block is that everything above is also visible so need to use lg-none to stop that -->
-                                            <a class="dropdown-item d-none d-md-block d-lg-none" href="#"
-                                                onclick="alert('d-none d-md-block d-lg-none')">Only medium</a>
-
-                                            <!-- only display when screen width is medium or below -->
-                                            <!-- when you use none, everything below is VISIBLE, everything above is not -->
-                                            <a class="dropdown-item d-lg-none" href="#"
-                                                onclick="alert('d-lg-none')">Medium or below</a>
-
-                                            <!-- only display when screen width is medium or above -->
-                                            <!-- d-xs-none does not exist, use d-none -->
-                                            <a class="dropdown-item d-sm-none d-none d-md-block" href="#"
-                                                onclick="alert('d-sm-none d-none d-md-block')">Medium or above</a>
-
-                                            <!-- only display when screen width is NOT medium -->
-                                            <!-- default when using none is that everything below is visible, everything above is not
-                                            so in this case you also need to say specifically that everything above is visible using d-lg-block -->
-                                            <a class="dropdown-item d-md-none d-lg-block" href="#"
-                                                onclick="alert('d-md-none d-lg-block')">Not medium</a>
-                                        </div>
-                                    </div> <!-- end of the screen size check menu option-->
-
-
-                                </div> <!--navbar-nav end -->
-                            </div>
-                            <!-- Sidebar End -->
-
-
-
-
-
+                            <a class="dropdown-item d-md-none" class="dropdown-item" href="#" onclick="showBuildings()">
+                                Add Buildings
+                            </a>
+                            <a class="dropdown-item d-md-none" class="dropdown-item" href="#"
+                                onclick="removeBuildings()">
+                                Remove Buildings
+                            </a>
+                            <a class="dropdown-item d-md-none" class="dropdown-item" href="#"
+                                onclick="showUniversity()">
+                                Add University
+                            </a>
+                            <a class="dropdown-item d-md-none" class="dropdown-item" href="#"
+                                onclick="removeUniversity()">
+                                Remove University
+                            </a>
+                            <a class="dropdown-item d-none d-md-block" class="dropdown-item" href="#"
+                                onclick="showRooms()">
+                                Add Rooms
+                            </a>
+                            <a class="dropdown-item d-none d-md-block" class="dropdown-item" href="#"
+                                onclick="removeRooms()">
+                                Remove Rooms
+                            </a>
+                            <a class="dropdown-item d-none d-md-block" class="dropdown-item" href="#"
+                                onclick="showTemperature()">
+                                Add Temperature Sensors
+                            </a>
+                            <a class="dropdown-item d-none d-md-block" class="dropdown-item" href="#"
+                                onclick="removeTemperature()">
+                                Remove Temperature Sensors
+                            </a>
                         </div> <!-- end of the content wrapper -->
                     </div> <!-- container fluid that wraps everything -->
 
@@ -292,19 +240,19 @@
 
     <script src="js/utilities.js"></script>
 
-    <script src="js/geoJSONShapes.js"></script>
+    <!-- <script src="js/geoJSONShapes.js"></script>
 
-    <script src="js/geoJSONShapes.js"></script>
+    <script src="js/geoJSONShapes.js"></script> -->
 
     <script src="js/mapUtilities.js"></script>
 
-    <script src="js/busstops.js"></script>
+    <script src="js/locationServices.js"></script>
 
-    <script src="js/ethernet.js"></script>
+    <!-- <script src="js/ethernet.js"></script> -->
 
-    <script src="js/includeDialogs.js"></script>
-    <div data-w3-include-html="./dialogs/dialogs.txt"></div>
-    <script>includeHTML();</script>
+    <!-- <script src="js/includeDialogs.js"></script> -->
+    <!-- <div data-w3-include-html="./dialogs/dialogs.txt"></div> -->
+    <!-- <script>includeHTML();</script> -->
 
 </body>
 
