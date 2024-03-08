@@ -75,7 +75,7 @@ geoJSON.get("/asset_information", (req, res) => {
 });
 
 geoJSON.get(
-  "/getGeoJSON/:schemaname/:tablename/:idcolumn/:geomcolumn",
+  "/geojson/:schemaname/:tablename/:idcolumn/:geomcolumn",
   (req, res) => {
     pool.connect((err, client, done) => {
       if (err) {
@@ -173,7 +173,7 @@ geoJSON.get(
             // run the second query
             pool.query(querystring, function (err, result) {
               //call `done()` to release the client back to the pool
-              pool.end();
+              // pool.end();
               if (err) {
                 console.log(err);
                 res.status(400).send(err);
