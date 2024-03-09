@@ -6,7 +6,7 @@
  * global as will need to be referened by the room layer remove functionality
  *
  */
-const baseUrl = document.location.origin; //"http://localhost:4480/api/geojson24/geojson";
+const baseUrl = document.location.origin + "/api/geojson24/geojson"; //"http://localhost:4480/api/geojson24/geojson";
 
 /**
  * Rooms Layer
