@@ -92,7 +92,7 @@ dataAPI.get("/reversetext", function (req, res) {
  *
  */
 const geoJSON = require("./routes/geoJSON");
-dataAPI.use(process.env.SPECIFIC_ROUTE, geoJSON);
+dataAPI.use("/api/geojson24", geoJSON);
 
 dataAPI.use(
   "/documentation",
