@@ -16,8 +16,7 @@ const username = os.userInfo().username; // locate the database login details
 
 // oad the database login details file
 let configtext =
-  "" + fs.readFileSync("/home/" + username + "/certs/postGISConnection.js"); // locate the database login details
-
+  "" + fs.readFileSync("/home/" + username + "/certs/postGISConnection.js"); // locate the data
 // now convert the configruation file into the correct format -i.e. a name/value pair array
 // this means looping through the file looking for commas
 // each comma indicates a new line, a new piece of information
