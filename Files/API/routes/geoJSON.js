@@ -31,7 +31,7 @@ geoJSON.get("/postgistest", function (req, res) {
     // will return err if it fails
     // result will hold any values returned by the SQL
     pool.query(query, function (err, result) {
-      pool.end();
+      // pool.end();
       if (err) {
         console.log(err);
         res.status(400).send(err);
@@ -63,7 +63,7 @@ geoJSON.get("/asset_information", (req, res) => {
       "   FROM cege0043.asset_information  As lg order by id limit 100  ) As f";
     console.log(querystring);
     pool.query(querystring, function (err, result) {
-      pool.end();
+      // pool.end();
       if (err) {
         console.log(err);
         res.status(400).send(err);
