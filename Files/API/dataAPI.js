@@ -25,7 +25,7 @@ const dataAPI = express();
 // add an http server to serve files
 let http = require("http");
 let httpServer = http.createServer(dataAPI);
-let port = process.env.PORT || 3000;
+let port = 4480;
 let server = httpServer.listen(port);
 
 // adding functionality to allow cross-domain queries
