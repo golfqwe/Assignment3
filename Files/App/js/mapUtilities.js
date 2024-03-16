@@ -8,7 +8,7 @@
  */
 let priceQueueLayer = [];
 let myFeatureGroup;
-const baseUrlCRUD = "http://localhost:4480/crud24/testCRUD"; //document.location.origin + "/api/crud24/testCRUD"; //"http://localhost:4480/crud24/testCRUD";
+const baseUrlCRUD = document.location.origin + "/api/crud24/testCRUD"; //"http://localhost:4480/crud24/testCRUD";
 /**
  * function onMapClick - creates a pop up when the user clicks on the map
  *
