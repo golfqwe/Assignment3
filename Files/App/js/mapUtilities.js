@@ -8,6 +8,7 @@
  */
 let priceQueueLayer = [];
 let myFeatureGroup;
+const baseUrlCRUD = document.location.origin + "/api/crud24/testCRUD"; //"http://localhost:4480/crud24/testCRUD";
 /**
  * function onMapClick - creates a pop up when the user clicks on the map
  *
@@ -136,8 +137,85 @@ function addPriceQueue() {
   mymap.flyToBounds(markers, 18);
 }
 
+/**
+ * function to remove all coordinates price/queue to the map being loaded
+ *
+ */
 function removePriceQueue() {
   priceQueueLayer.forEach((element) => {
     element.remove();
   });
+}
+
+/**
+ * function to submit the form and add the petrol station to the map
+ *
+ */
+function submitPetrolStationForm() {
+  // first we need to get the ID (code) that uniquely identifies the earthquake
+  // that way we know which earthquake to associate with the damaage report when we save it in the database
+  let userId = document.getElementById("userId").value;
+  let petrolStationName = document.getElementById("petrolStationName").value;
+  let inspectionDate = document.getElementById("inspectionDate").value;
+
+  let queryString =
+    "?userId=" +
+    userId +
+    "&petrolStationName=" +
+    petrolStationName +
+    "&inspectionDate=" +
+    inspectionDate;
+
+  requestApi(queryString, "petrol");
+}
+/**
+ * function to submit the price queue form
+ *
+ */
+function submitPriceQueueForm() {
+  // first we need to get the ID (code) that uniquely identifies the earthquake
+  // that way we know which earthquake to associate with the damaage report when we save it in the database
+  let pricePetrolStationName = document.getElementById(
+    "pricePetrolStationName"
+  ).value;
+  let petrolStationId = document.getElementById("petrolStationId").value;
+  let priceUserId = document.getElementById("priceUserId").value;
+  let inspectionDate = document.getElementById("priceInspectionDate").value;
+  let queue = $("input[name=queue]:checked").val();
+  let price = document.getElementById("price").value;
+
+  let queryString =
+    "?petrolStationName=" +
+    pricePetrolStationName +
+    "&petrolStationId=" +
+    petrolStationId +
+    "&userId=" +
+    priceUserId +
+    "&queue=" +
+    queue +
+    "&price=" +
+    price;
+
+  requestApi(queryString, "price");
+}
+
+/**
+ * function to submit the price queue form
+ *
+ */
+function requestApi(queryString, flag) {
+  $.ajax({
+    url: baseUrlCRUD + queryString,
+    crossDomain: true,
+    success: function (result) {
+      alert(decodeURI(JSON.stringify(result)));
+      if (flag === "petrol") {
+        document.getElementById("petrolStationForm").reset();
+        $("#petrolStation").modal("hide");
+      } else {
+        document.getElementById("priceQueueForm").reset();
+        $("#priceQueue").modal("hide");
+      }
+    }, // end of the inner function
+  }); // end of the ajax request
 }
