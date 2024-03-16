@@ -61,8 +61,8 @@
       </div>
       <div class="modal-body" >
         <form id="priceQueueForm">
-          <input type="text" class="form-control" id="latitude" value="" hidden>
-          <input type="text" class="form-control" id="longtitude" value="" hidden>
+          <input type="text" class="form-control" id="platitude" value="" hidden>
+          <input type="text" class="form-control" id="plongtitude" value="" hidden>
           <div class="row mb-2">
             <label for="pricePetrolStationName" class="col-sm-4 col-form-label">Petrol Station Name : </label>
             <div class="col-sm-8">
@@ -153,6 +153,8 @@
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">New Petrol Station</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         <input type="text" class="form-control" id="latitude" value="" hidden>
+          <input type="text" class="form-control" id="longtitude" value="" hidden>
       </div>
       <div class="modal-body">
         <form id="petrolStationForm">

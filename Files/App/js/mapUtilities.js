@@ -162,6 +162,8 @@ function submitPetrolStationForm() {
   let userId = document.getElementById("userId").value;
   let petrolStationName = document.getElementById("petrolStationName").value;
   let inspectionDate = document.getElementById("inspectionDate").value;
+  let latitude = document.getElementById("latitude").value;
+  let longtitude = document.getElementById("longtitude").value;
 
   let queryString =
     "?userId=" +
@@ -169,7 +171,11 @@ function submitPetrolStationForm() {
     "&petrolStationName=" +
     petrolStationName +
     "&inspectionDate=" +
-    inspectionDate;
+    inspectionDate +
+    "&latitude=" +
+    latitude +
+    "&longtitude=" +
+    longtitude;
 
   requestApi(queryString, "petrol");
 }
@@ -188,8 +194,8 @@ function submitPriceQueueForm() {
   let inspectionDate = document.getElementById("priceInspectionDate").value;
   let queue = $("input[name=queue]:checked").val();
   let price = document.getElementById("price").value;
-  let latitude = document.getElementById("latitude").value;
-  let longtitude = document.getElementById("longtitude").value;
+  let latitude = document.getElementById("platitude").value;
+  let longtitude = document.getElementById("plongtitude").value;
 
   let queryString =
     "?petrolStationName=" +
