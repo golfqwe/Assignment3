@@ -8,7 +8,7 @@
  */
 let priceQueueLayer = [];
 let myFeatureGroup;
-const baseUrlCRUD = document.location.origin + "/api/crud24/testCRUD"; //"http://localhost:4480/crud24/testCRUD";
+const baseUrlCRUD = "http://localhost:4480/crud24/testCRUD"; //document.location.origin + "/api/crud24/testCRUD"; //"http://localhost:4480/crud24/testCRUD";
 /**
  * function onMapClick - creates a pop up when the user clicks on the map
  *
@@ -129,7 +129,12 @@ function addPriceQueue() {
     markers.push([coordinates[i][1], coordinates[i][2]]);
   }
   myFeatureGroup = L.featureGroup(priceQueueLayer)
-    .on("click", () => $("#priceQueue").modal("show"))
+    .on("click", (e) => {
+      console.log("🚀 ~ .on ~ e:", e);
+      $("#latitude").val(e.latlng.lat);
+      $("#longtitude").val(e.latlng.lng);
+      $("#priceQueue").modal("show");
+    })
     .addTo(mymap);
   // fly to the markers
   // note that GeoJSON uses lng lat and leaflet uses lat lng so we have to reverse the order
@@ -183,6 +188,8 @@ function submitPriceQueueForm() {
   let inspectionDate = document.getElementById("priceInspectionDate").value;
   let queue = $("input[name=queue]:checked").val();
   let price = document.getElementById("price").value;
+  let latitude = document.getElementById("latitude").value;
+  let longtitude = document.getElementById("longtitude").value;
 
   let queryString =
     "?petrolStationName=" +
@@ -194,7 +201,11 @@ function submitPriceQueueForm() {
     "&queue=" +
     queue +
     "&price=" +
-    price;
+    price +
+    "&latitude=" +
+    latitude +
+    "&longtitude=" +
+    longtitude;
 
   requestApi(queryString, "price");
 }

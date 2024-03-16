@@ -61,6 +61,8 @@
       </div>
       <div class="modal-body" >
         <form id="priceQueueForm">
+          <input type="text" class="form-control" id="latitude" value="" hidden>
+          <input type="text" class="form-control" id="longtitude" value="" hidden>
           <div class="row mb-2">
             <label for="pricePetrolStationName" class="col-sm-4 col-form-label">Petrol Station Name : </label>
             <div class="col-sm-8">
