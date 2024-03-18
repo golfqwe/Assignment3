@@ -11,6 +11,7 @@ document.addEventListener(
   function () {
     console.log("listener domcontentloaded");
     loadMap();
+    checkEventsNavber();
   },
   false
 );

@@ -26,70 +26,66 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>"use strict"
+            <pre class="prettyprint source linenums"><code>"use strict";
 
 /**
  * ethernetLayer
- * 
+ *
  * a global variable to store the ethernet layer once it has been added to the map
  * global as will need to be referened by the ethernet remove functionality
- * 
+ *
  */
 let ethernetLayer;
 
 function showEthernetStyled() {
+  let style1 = {
+    color: "#ea3008",
+    weight: 10,
+    opacity: 0.65,
+  };
+  let style2 = {
+    color: "pink",
+    weight: 10,
+    opacity: 0.65,
+  };
+  let style3 = {
+    color: "#0811EA",
+    weight: 10,
+    opacity: 0.65,
+  };
 
+  // the onEachFeature command loops through every featulre in the GeoJSON dataset and creates the popup and style for each one
+  ethernetCables = L.geoJson(result, {
+    onEachFeature: function (f, l) {
+      l.bindPopup(
+        "&lt;pre>" +
+          JSON.stringify(f.properties, null, " ").replace(/[\{\}"]/g, "") +
+          "&lt;/pre>"
+      );
+      switch (f.properties.criticality) {
+        case 2:
+          l.setStyle(style1);
+          break;
+        case 3:
+          l.setStyle(style2);
+          break;
+        default:
+          l.setStyle(style2);
+      }
+    },
+  }).addTo(mymap);
 
-	 let style1 = {
-          "color": "#ea3008",
-          "weight": 10,
-          "opacity": 0.65
-      };
-        let style2 = {
-          "color": "pink",
-          "weight": 10,
-          "opacity": 0.65
-      };
-        let style3 = {
-          "color": "#0811EA",
-          "weight": 10,
-          "opacity": 0.65
-      };
-
-      
-
-	 		// the onEachFeature command loops through every featulre in the GeoJSON dataset and creates the popup and style for each one
-    		ethernetCables = L.geoJson(result, {
-    				onEachFeature: function (f, l) {
-   							l.bindPopup('&lt;pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'&lt;/pre>');
-   							switch (f.properties.criticality) {
-		    		  			case 2:
-					  				l.setStyle(style1);
-					  				break;
-					  			case 3:
-					  				l.setStyle(style2);
-					  				break;
-					  			default:
-					  				l.setStyle(style2);
-					  		}
-
-					}
-			}).addTo(mymap);
-
-    		// change the map zoom so that all the data is shown
-    		mymap.fitBounds(ethernetCables.getBounds());
-	
-
+  // change the map zoom so that all the data is shown
+  mymap.fitBounds(ethernetCables.getBounds());
 }
 
 function removeEthernet() {
-	// we use a try / catch statement here - this means that if the layer has not yet been added we won't get an error message
-	try {
-			mymap.removeLayer( ethernetLayer);
-		} catch (err) {
-
-	}
-}</code></pre>
+  // we use a try / catch statement here - this means that if the layer has not yet been added we won't get an error message
+  try {
+    mymap.removeLayer(ethernetLayer);
+  } catch (err) {}
+}
+</code></pre>
         </article>
     </section>
 
@@ -99,13 +95,13 @@ function removeEthernet() {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="eData.dateOptions.html">dateOptions</a></li><li><a href="moment.tz.html">tz</a></li></ul><h3>Global</h3><ul><li><a href="global.html#baseUrl">baseUrl</a></li><li><a href="global.html#buildingsLayer">buildingsLayer</a></li><li><a href="global.html#busStopsLayer">busStopsLayer</a></li><li><a href="global.html#closeDialog">closeDialog</a></li><li><a href="global.html#ethernetLayer">ethernetLayer</a></li><li><a href="global.html#includeHTML">includeHTML</a></li><li><a href="global.html#keyPressZoomToPoint">keyPressZoomToPoint</a></li><li><a href="global.html#layerControl">layerControl</a></li><li><a href="global.html#loadMap">loadMap</a></li><li><a href="global.html#mymap">mymap</a></li><li><a href="global.html#onMapClickDiv">onMapClickDiv</a></li><li><a href="global.html#processMapClick">processMapClick</a></li><li><a href="global.html#removeBuildings">removeBuildings</a></li><li><a href="global.html#removeBusStops">removeBusStops</a></li><li><a href="global.html#removeRooms">removeRooms</a></li><li><a href="global.html#removeTemperature">removeTemperature</a></li><li><a href="global.html#removeUniversity">removeUniversity</a></li><li><a href="global.html#roomsLayer">roomsLayer</a></li><li><a href="global.html#saveDialog">saveDialog</a></li><li><a href="global.html#showBuildings">showBuildings</a></li><li><a href="global.html#showBusStops">showBusStops</a></li><li><a href="global.html#showDialog">showDialog</a></li><li><a href="global.html#showLayerList">showLayerList</a></li><li><a href="global.html#showLayerToLoad">showLayerToLoad</a></li><li><a href="global.html#showRooms">showRooms</a></li><li><a href="global.html#showTemperature">showTemperature</a></li><li><a href="global.html#showUniversity">showUniversity</a></li><li><a href="global.html#temperatureLayer">temperatureLayer</a></li><li><a href="global.html#universityLayer">universityLayer</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="eData.dateOptions.html">dateOptions</a></li><li><a href="moment.tz.html">tz</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addPriceQueue">addPriceQueue</a></li><li><a href="global.html#baseUrl">baseUrl</a></li><li><a href="global.html#buildingsLayer">buildingsLayer</a></li><li><a href="global.html#busStopsLayer">busStopsLayer</a></li><li><a href="global.html#checkEventsNavber">checkEventsNavber</a></li><li><a href="global.html#closeDialog">closeDialog</a></li><li><a href="global.html#ethernetLayer">ethernetLayer</a></li><li><a href="global.html#includeHTML">includeHTML</a></li><li><a href="global.html#keyPressZoomToPoint">keyPressZoomToPoint</a></li><li><a href="global.html#layerControl">layerControl</a></li><li><a href="global.html#loadMap">loadMap</a></li><li><a href="global.html#mymap">mymap</a></li><li><a href="global.html#onMapClickDiv">onMapClickDiv</a></li><li><a href="global.html#priceQueueLayer">priceQueueLayer</a></li><li><a href="global.html#processMapClick">processMapClick</a></li><li><a href="global.html#removeBuildings">removeBuildings</a></li><li><a href="global.html#removeBusStops">removeBusStops</a></li><li><a href="global.html#removePriceQueue">removePriceQueue</a></li><li><a href="global.html#removeRooms">removeRooms</a></li><li><a href="global.html#removeTemperature">removeTemperature</a></li><li><a href="global.html#removeUniversity">removeUniversity</a></li><li><a href="global.html#requestApi">requestApi</a></li><li><a href="global.html#roomsLayer">roomsLayer</a></li><li><a href="global.html#saveDialog">saveDialog</a></li><li><a href="global.html#showBuildings">showBuildings</a></li><li><a href="global.html#showBusStops">showBusStops</a></li><li><a href="global.html#showDialog">showDialog</a></li><li><a href="global.html#showLayerList">showLayerList</a></li><li><a href="global.html#showLayerToLoad">showLayerToLoad</a></li><li><a href="global.html#showRooms">showRooms</a></li><li><a href="global.html#showTemperature">showTemperature</a></li><li><a href="global.html#showUniversity">showUniversity</a></li><li><a href="global.html#submitPetrolStationForm">submitPetrolStationForm</a></li><li><a href="global.html#submitPriceQueueForm">submitPriceQueueForm</a></li><li><a href="global.html#temperatureLayer">temperatureLayer</a></li><li><a href="global.html#universityLayer">universityLayer</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Mar 08 2024 15:27:03 GMT+0700 (เวลาอินโดจีน)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Mar 18 2024 10:04:04 GMT+0700 (เวลาอินโดจีน)
 </footer>
 
 <script> prettyPrint(); </script>

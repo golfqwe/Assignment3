@@ -1,5 +1,12 @@
 "use strict";
 
+/** Express router providing user related routes
+ * @module dataAPI
+ * @requires express
+ * @requires path
+ *
+ */
+
 /**
  * express module
  * @description express is the server that forms part of the nodejs program
@@ -86,17 +93,35 @@ dataAPI.get("/reversetext", function (req, res) {
 });
 
 /** Express router providing user related routes
- * @module dataAPI
- * @requires express
- * @requires path
+ * @name /geojson24
+ * @function
+ * @memberof module:dataAPI
+ * @inner
+ * @param {string}  - the string to be reversed
  *
  */
 const geoJSON = require("./routes/geoJSON");
 dataAPI.use("/geojson24", geoJSON);
 
+/** Express router providing user related routes
+ * @name /crud24
+ * @function
+ * @memberof module:dataAPI
+ * @inner
+ * @param {string}  - the string to be reversed
+ *
+ */
 const crud = require("./routes/crud");
 dataAPI.use("/crud24", crud);
 
+/** Express router providing user related routes
+ * @name /documentation
+ * @function
+ * @memberof module:dataAPI
+ * @inner
+ * @param {string}  - the string to be reversed
+ *
+ */
 dataAPI.use(
   "/documentation",
   express.static(path.join(__dirname, "documentation"))

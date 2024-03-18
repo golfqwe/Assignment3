@@ -26,51 +26,52 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>
-/**
+            <pre class="prettyprint source linenums"><code>/**
  * variable to store the leaflet map so that we can get hold of the map and make changes via code
  */
 let mymap; // stores the leaflet map
-
-
-
 
 /**
  * variable to store the leaflet layer control so that we can get hold of the map and make changes via code
  */
 let layerControl; // the leaflet layer control
 
-
-
 /**
  * function to load a leaflet map in to an existing DIV, with OSM baselayer and a default layer control created for later use
  */
 
 function loadMap() {
+  // note the ordering of events below - the load event is set when the map is first initiatlised i.e. zoom etc set
+  // so the load event needs to be set BEFORE the setView
+  mymap = L.map("mapid").setView([51.505, -0.09], 13);
+  let osm = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution:
+      '&amp;copy; &lt;a href="http://www.openstreetmap.org/copyright">OpenStreetMap&lt;/a>',
+  }).addTo(mymap);
 
-    // note the ordering of events below - the load event is set when the map is first initiatlised i.e. zoom etc set
-    // so the load event needs to be set BEFORE the setView
-    mymap = L.map('mapid').setView([51.505, -0.09], 13);
-    let osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&amp;copy; &lt;a href="http://www.openstreetmap.org/copyright">OpenStreetMap&lt;/a>'
-    }).addTo(mymap);
+  let baseMaps = {
+    OpenStreetMap: osm,
+  };
 
-    let baseMaps = {
-        "OpenStreetMap": osm,
-    };
+  var overlayMaps = {};
 
-    var overlayMaps = {
-    };
+  layerControl = L.control.layers(baseMaps, overlayMaps).addTo(mymap);
 
-    
-    layerControl = L.control.layers(baseMaps,overlayMaps).addTo(mymap);
+  mymap.on("click", onMapClickDiv);
 
-    mymap.on('click', onMapClickDiv);
-
-    mymap.on('keydown', keyPressZoomToPoint);
-
+  mymap.on("keydown", keyPressZoomToPoint);
 } // end loadMap
+
+// Testimonials carousel
+$(".testimonial-carousel").owlCarousel({
+  autoplay: true,
+  smartSpeed: 1000,
+  items: 1,
+  dots: true,
+  loop: true,
+  nav: false,
+});
 </code></pre>
         </article>
     </section>
@@ -81,13 +82,13 @@ function loadMap() {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="eData.dateOptions.html">dateOptions</a></li><li><a href="moment.tz.html">tz</a></li></ul><h3>Global</h3><ul><li><a href="global.html#baseUrl">baseUrl</a></li><li><a href="global.html#buildingsLayer">buildingsLayer</a></li><li><a href="global.html#busStopsLayer">busStopsLayer</a></li><li><a href="global.html#closeDialog">closeDialog</a></li><li><a href="global.html#ethernetLayer">ethernetLayer</a></li><li><a href="global.html#includeHTML">includeHTML</a></li><li><a href="global.html#keyPressZoomToPoint">keyPressZoomToPoint</a></li><li><a href="global.html#layerControl">layerControl</a></li><li><a href="global.html#loadMap">loadMap</a></li><li><a href="global.html#mymap">mymap</a></li><li><a href="global.html#onMapClickDiv">onMapClickDiv</a></li><li><a href="global.html#processMapClick">processMapClick</a></li><li><a href="global.html#removeBuildings">removeBuildings</a></li><li><a href="global.html#removeBusStops">removeBusStops</a></li><li><a href="global.html#removeRooms">removeRooms</a></li><li><a href="global.html#removeTemperature">removeTemperature</a></li><li><a href="global.html#removeUniversity">removeUniversity</a></li><li><a href="global.html#roomsLayer">roomsLayer</a></li><li><a href="global.html#saveDialog">saveDialog</a></li><li><a href="global.html#showBuildings">showBuildings</a></li><li><a href="global.html#showBusStops">showBusStops</a></li><li><a href="global.html#showDialog">showDialog</a></li><li><a href="global.html#showLayerList">showLayerList</a></li><li><a href="global.html#showLayerToLoad">showLayerToLoad</a></li><li><a href="global.html#showRooms">showRooms</a></li><li><a href="global.html#showTemperature">showTemperature</a></li><li><a href="global.html#showUniversity">showUniversity</a></li><li><a href="global.html#temperatureLayer">temperatureLayer</a></li><li><a href="global.html#universityLayer">universityLayer</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="eData.dateOptions.html">dateOptions</a></li><li><a href="moment.tz.html">tz</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addPriceQueue">addPriceQueue</a></li><li><a href="global.html#baseUrl">baseUrl</a></li><li><a href="global.html#buildingsLayer">buildingsLayer</a></li><li><a href="global.html#busStopsLayer">busStopsLayer</a></li><li><a href="global.html#checkEventsNavber">checkEventsNavber</a></li><li><a href="global.html#closeDialog">closeDialog</a></li><li><a href="global.html#ethernetLayer">ethernetLayer</a></li><li><a href="global.html#includeHTML">includeHTML</a></li><li><a href="global.html#keyPressZoomToPoint">keyPressZoomToPoint</a></li><li><a href="global.html#layerControl">layerControl</a></li><li><a href="global.html#loadMap">loadMap</a></li><li><a href="global.html#mymap">mymap</a></li><li><a href="global.html#onMapClickDiv">onMapClickDiv</a></li><li><a href="global.html#priceQueueLayer">priceQueueLayer</a></li><li><a href="global.html#processMapClick">processMapClick</a></li><li><a href="global.html#removeBuildings">removeBuildings</a></li><li><a href="global.html#removeBusStops">removeBusStops</a></li><li><a href="global.html#removePriceQueue">removePriceQueue</a></li><li><a href="global.html#removeRooms">removeRooms</a></li><li><a href="global.html#removeTemperature">removeTemperature</a></li><li><a href="global.html#removeUniversity">removeUniversity</a></li><li><a href="global.html#requestApi">requestApi</a></li><li><a href="global.html#roomsLayer">roomsLayer</a></li><li><a href="global.html#saveDialog">saveDialog</a></li><li><a href="global.html#showBuildings">showBuildings</a></li><li><a href="global.html#showBusStops">showBusStops</a></li><li><a href="global.html#showDialog">showDialog</a></li><li><a href="global.html#showLayerList">showLayerList</a></li><li><a href="global.html#showLayerToLoad">showLayerToLoad</a></li><li><a href="global.html#showRooms">showRooms</a></li><li><a href="global.html#showTemperature">showTemperature</a></li><li><a href="global.html#showUniversity">showUniversity</a></li><li><a href="global.html#submitPetrolStationForm">submitPetrolStationForm</a></li><li><a href="global.html#submitPriceQueueForm">submitPriceQueueForm</a></li><li><a href="global.html#temperatureLayer">temperatureLayer</a></li><li><a href="global.html#universityLayer">universityLayer</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Mar 08 2024 15:27:03 GMT+0700 (เวลาอินโดจีน)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Mar 18 2024 10:04:04 GMT+0700 (เวลาอินโดจีน)
 </footer>
 
 <script> prettyPrint(); </script>

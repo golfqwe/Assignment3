@@ -1,6 +1,8 @@
 {
   "source": {
-    "include": ["."],
+    "include": [
+      "."
+    ],
     "includePattern": ".+\\.js(doc|x)?$",
     "excludePattern": "node_modules"
   },
@@ -13,4 +15,3 @@
     "destination": "./documentation/"
   }
 }
-

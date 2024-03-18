@@ -7,7 +7,11 @@ let fs = require("fs");
 const bodyParser = require("body-parser");
 crud.use(bodyParser.urlencoded({ extended: true }));
 
-// test endpoint for GET requests (can be called from a browser URL)
+/**
+ * @function
+ * @description test endpoint for GET requests (can be called from a browser URL)
+ * @returns {object} Request OriginalUrl.
+ */
 crud.get("/testCRUD", function (req, res) {
   res.json({ message: req.originalUrl + " " + " GET REQUEST" });
 });

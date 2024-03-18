@@ -130,9 +130,8 @@ function addPriceQueue() {
   }
   myFeatureGroup = L.featureGroup(priceQueueLayer)
     .on("click", (e) => {
-      console.log("🚀 ~ .on ~ e:", e);
-      $("#latitude").val(e.latlng.lat);
-      $("#longtitude").val(e.latlng.lng);
+      $("#platitude").val(e.latlng.lat);
+      $("#plongtitude").val(e.latlng.lng);
       $("#priceQueue").modal("show");
     })
     .addTo(mymap);
@@ -171,11 +170,7 @@ function submitPetrolStationForm() {
     "&petrolStationName=" +
     petrolStationName +
     "&inspectionDate=" +
-    inspectionDate +
-    "&latitude=" +
-    latitude +
-    "&longtitude=" +
-    longtitude;
+    inspectionDate;
 
   requestApi(queryString, "petrol");
 }
@@ -235,4 +230,17 @@ function requestApi(queryString, flag) {
       }
     }, // end of the inner function
   }); // end of the ajax request
+}
+
+/**
+ * function to get value from event click naviation bar
+ *
+ */
+function checkEventsNavber() {
+  $(".nav a").on("click", function () {
+    $(this).addClass("active");
+    $(this).parent().children("a").not(this).removeClass("active");
+    let val = $(this).data("title");
+    alert("Functionality to do " + val);
+  });
 }
