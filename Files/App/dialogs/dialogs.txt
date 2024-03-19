@@ -61,6 +61,8 @@
       </div>
       <div class="modal-body" >
         <form id="priceQueueForm">
+          <input type="text" class="form-control" id="petrolStationId" hidden>
+          <input type="text" class="form-control" id="priceUserId" hidden>
           <input type="text" class="form-control" id="platitude" value="" hidden>
           <input type="text" class="form-control" id="plongtitude" value="" hidden>
           <div class="row mb-2">
@@ -69,18 +71,7 @@
               <input type="text" class="form-control" id="pricePetrolStationName" value="">
             </div>
           </div>
-          <div class="row mb-2">
-            <label for="petrolStationId" class="col-sm-4 col-form-label">Petrol Station ID : </label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="petrolStationId">
-            </div>
-          </div>
-          <div class="row mb-2">
-            <label for="priceUserId" class="col-sm-4 col-form-label">User ID : </label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="priceUserId">
-            </div>
-          </div>
+
           <div class="row mb-2">
             <label for="priceInspectionDate" class="col-sm-4 col-form-label">inspection Date : </label>
             <div class="col-sm-8">
@@ -161,7 +152,7 @@
           <div class="row mb-2">
             <label for="petrolStationName" class="col-sm-4 col-form-label">Petrol Station Name : </label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="userId" value="U0001" hidden>
+              <input type="text" class="form-control" id="userId" value="" hidden>
               <input type="text" class="form-control" id="petrolStationName" value="" >
             </div>
           </div>

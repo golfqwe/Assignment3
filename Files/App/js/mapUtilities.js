@@ -8,7 +8,9 @@
  */
 let priceQueueLayer = [];
 let myFeatureGroup;
-const baseUrlCRUD = document.location.origin + "/api/crud24/testCRUD"; //"http://localhost:4480/crud24/testCRUD";
+let userId = 1;
+let priceUserId = 1;
+const baseUrlCRUD = "http://localhost:4480/crud24/testCRUD"; //document.location.origin + "/api/crud24/testCRUD"; //"http://localhost:4480/crud24/testCRUD";
 /**
  * function onMapClick - creates a pop up when the user clicks on the map
  *
@@ -87,6 +89,8 @@ function onMapClickDiv(e) {
 
   const width = $(window).width();
   if (width >= breakpoints.md) {
+    $("#latitude").val(e.latlng.lat);
+    $("#longtitude").val(e.latlng.lng);
     $("#petrolStation").modal("show");
   }
 }
@@ -115,21 +119,26 @@ function keyPressZoomToPoint(e) {
 function addPriceQueue() {
   // create a second point and use a different markers
   var coordinates = [
-    ["Petrol Station 1", 51.50015, -0.12624],
-    ["Petrol Station 2", 51.500333, -0.127502],
-    ["Petrol Station 3", 51.501075, -0.127481],
+    ["P0001", "Petrol Station 1", 51.50015, -0.12624],
+    ["P0002", "Petrol Station 2", 51.500333, -0.127502],
+    ["P0003", "Petrol Station 3", 51.501075, -0.127481],
   ];
 
   let markers = [];
   let tem = [];
   for (var i = 0; i < coordinates.length; i++) {
     // add a point
-    tem = L.marker([coordinates[i][1], coordinates[i][2]]);
+    tem = L.marker([coordinates[i][2], coordinates[i][3]], {
+      title: coordinates[i][1],
+      code: coordinates[i][0],
+    });
     priceQueueLayer.push(tem);
-    markers.push([coordinates[i][1], coordinates[i][2]]);
+    markers.push([coordinates[i][2], coordinates[i][3]]);
   }
   myFeatureGroup = L.featureGroup(priceQueueLayer)
     .on("click", (e) => {
+      $("#pricePetrolStationName").val(e.layer.options.title);
+      $("#petrolStationId").val(e.layer.options.code);
       $("#platitude").val(e.latlng.lat);
       $("#plongtitude").val(e.latlng.lng);
       $("#priceQueue").modal("show");
@@ -158,7 +167,9 @@ function removePriceQueue() {
 function submitPetrolStationForm() {
   // first we need to get the ID (code) that uniquely identifies the earthquake
   // that way we know which earthquake to associate with the damaage report when we save it in the database
-  let userId = document.getElementById("userId").value;
+  let tempuserId = `U` + userId.toString().padStart(4, "0");
+  $("#userId").val(tempuserId);
+
   let petrolStationName = document.getElementById("petrolStationName").value;
   let inspectionDate = document.getElementById("inspectionDate").value;
   let latitude = document.getElementById("latitude").value;
@@ -166,13 +177,18 @@ function submitPetrolStationForm() {
 
   let queryString =
     "?userId=" +
-    userId +
+    tempuserId +
     "&petrolStationName=" +
     petrolStationName +
     "&inspectionDate=" +
-    inspectionDate;
+    inspectionDate +
+    "&latitude=" +
+    latitude +
+    "&longtitude=" +
+    longtitude;
 
   requestApi(queryString, "petrol");
+  userId++;
 }
 /**
  * function to submit the price queue form
@@ -185,7 +201,10 @@ function submitPriceQueueForm() {
     "pricePetrolStationName"
   ).value;
   let petrolStationId = document.getElementById("petrolStationId").value;
-  let priceUserId = document.getElementById("priceUserId").value;
+
+  let tempPriceUserId = `U` + priceUserId.toString().padStart(4, "0");
+  $("#priceUserId").val(tempPriceUserId);
+
   let inspectionDate = document.getElementById("priceInspectionDate").value;
   let queue = $("input[name=queue]:checked").val();
   let price = document.getElementById("price").value;
@@ -198,7 +217,7 @@ function submitPriceQueueForm() {
     "&petrolStationId=" +
     petrolStationId +
     "&userId=" +
-    priceUserId +
+    tempPriceUserId +
     "&queue=" +
     queue +
     "&price=" +
@@ -209,6 +228,7 @@ function submitPriceQueueForm() {
     longtitude;
 
   requestApi(queryString, "price");
+  priceUserId++;
 }
 
 /**
@@ -241,6 +261,6 @@ function checkEventsNavber() {
     $(this).addClass("active");
     $(this).parent().children("a").not(this).removeClass("active");
     let val = $(this).data("title");
-    alert("Functionality to do " + val);
+    alert('"Functionality to do "' + val + " will go here");
   });
 }
