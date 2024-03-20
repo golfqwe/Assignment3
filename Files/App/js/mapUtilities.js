@@ -89,10 +89,6 @@ function onMapClickDiv(e) {
 
   const width = $(window).width();
   if (width >= breakpoints.md) {
-    $("#latitude").val(e.latlng.lat);
-    $("#longtitude").val(e.latlng.lng);
-    // $("#petrolStation").modal("show");
-
     // create a new Leaflet popup
     let popup = L.popup({ minWidth: 450 });
 
@@ -115,6 +111,8 @@ function onMapClickDiv(e) {
         popup.on("remove", closePetrolStationForm);
         // add some values to the pop up to show the coordinates
         popup.setLatLng(e.latlng).setContent(form).openOn(mymap);
+        $("#latitude").val(e.latlng.lat);
+        $("#longtitude").val(e.latlng.lng);
       },
     });
   }
