@@ -171,7 +171,7 @@ function submitPetrolStationForm() {
   $("#userId").val(tempuserId);
 
   let petrolStationName = document.getElementById("petrolStationName").value;
-  let inspectionDate = document.getElementById("inspectionDate").value;
+  let lastInspected = document.getElementById("lastInspected").value;
   let latitude = document.getElementById("latitude").value;
   let longtitude = document.getElementById("longtitude").value;
 
@@ -180,15 +180,23 @@ function submitPetrolStationForm() {
     tempuserId +
     "&petrolStationName=" +
     petrolStationName +
-    "&inspectionDate=" +
-    inspectionDate +
+    "&lastInspected=" +
+    lastInspected +
     "&latitude=" +
     latitude +
     "&longtitude=" +
     longtitude;
 
-  requestApi(queryString, "petrol");
-  userId++;
+  $.ajax({
+    url: baseUrlCRUD + queryString,
+    crossDomain: true,
+    success: function (result) {
+      document.getElementById("petrolStationForm").reset();
+      $("#petrolStation").modal("hide");
+      userId++;
+      alert(decodeURI(JSON.stringify(result)));
+    }, // end of the inner function
+  }); // end of the ajax request
 }
 /**
  * function to submit the price queue form
@@ -218,6 +226,8 @@ function submitPriceQueueForm() {
     petrolStationId +
     "&userId=" +
     tempPriceUserId +
+    "&inspectionDate=" +
+    inspectionDate +
     "&queue=" +
     queue +
     "&price=" +
@@ -227,27 +237,14 @@ function submitPriceQueueForm() {
     "&longtitude=" +
     longtitude;
 
-  requestApi(queryString, "price");
-  priceUserId++;
-}
-
-/**
- * function to submit the price queue form
- *
- */
-function requestApi(queryString, flag) {
   $.ajax({
     url: baseUrlCRUD + queryString,
     crossDomain: true,
     success: function (result) {
+      document.getElementById("priceQueueForm").reset();
+      $("#priceQueue").modal("hide");
+      priceUserId++;
       alert(decodeURI(JSON.stringify(result)));
-      if (flag === "petrol") {
-        document.getElementById("petrolStationForm").reset();
-        $("#petrolStation").modal("hide");
-      } else {
-        document.getElementById("priceQueueForm").reset();
-        $("#priceQueue").modal("hide");
-      }
     }, // end of the inner function
   }); // end of the ajax request
 }

@@ -73,7 +73,7 @@
           </div>
 
           <div class="row mb-2">
-            <label for="priceInspectionDate" class="col-sm-4 col-form-label">inspection Date : </label>
+            <label for="priceInspectionDate" class="col-sm-4 col-form-label">Inspection Date : </label>
             <div class="col-sm-8">
               <input type="date" class="form-control" id="priceInspectionDate">
             </div>
@@ -158,9 +158,9 @@
           </div>
 
           <div class="row mb-2">
-            <label for="inspectionDate" class="col-sm-4 col-form-label">inspection Date : </label>
+            <label for="lastInspected" class="col-sm-4 col-form-label">Last Inspected : </label>
             <div class="col-sm-8">
-              <input type="date" class="form-control" id="inspectionDate">
+              <input type="date" class="form-control" id="lastInspected">
             </div>
           </div>
         </form>
