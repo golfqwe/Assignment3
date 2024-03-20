@@ -10,7 +10,7 @@ let priceQueueLayer = [];
 let myFeatureGroup;
 let userId = 1;
 let priceUserId = 1;
-const baseUrlCRUD = document.location.origin + "/api/crud24/testCRUD"; //"http://localhost:4480/crud24/testCRUD";
+const baseUrlCRUD = "http://localhost:4480/crud24/testCRUD"; //document.location.origin + "/api/crud24/testCRUD"; //"http://localhost:4480/crud24/testCRUD";
 /**
  * function onMapClick - creates a pop up when the user clicks on the map
  *
@@ -91,7 +91,54 @@ function onMapClickDiv(e) {
   if (width >= breakpoints.md) {
     $("#latitude").val(e.latlng.lat);
     $("#longtitude").val(e.latlng.lng);
-    $("#petrolStation").modal("show");
+    // $("#petrolStation").modal("show");
+
+    // create a new Leaflet popup
+    let popup = L.popup({ minWidth: 450 });
+
+    // define some variables to store data that we need to use once we have the dialog HTML
+    // in this case the word  this refers to the marker that the user cliked on
+    // (in geneeral this in JavaScript events this is the element that received the event - which could be a button, a map, a div, a marker etc)
+
+    // we will load the dialog using an AJAX request
+    let formURL = "../dialogs/petrolStationForm.txt";
+    $.ajax({
+      url: formURL,
+      crossDomain: true,
+      success: function (result) {
+        console.log(result);
+        let form = result.toString();
+        // set the content of the popup to include the earthquake code identifier and then the form
+
+        // set an event to remove and destroy the form when the popup is closed
+        // this means that we don't end up with duplicate earthquakeCode DIVs
+        popup.on("remove", closePetrolStationForm);
+        // add some values to the pop up to show the coordinates
+        popup.setLatLng(e.latlng).setContent(form).openOn(mymap);
+      },
+    });
+  }
+}
+
+function closePetrolStationForm() {
+  // we need to destroy the form when the popup is closed
+  // so that we never end up with more than one DIV or INPUT box etc with the same ID (if the form is loaaded onto another earthquake point)
+  // use the remove() option to completely destroy the surrounding div and its contents
+
+  // this function is called by the close button but also by the on remove function which is triggered when the pop-up is closed
+  // two situations happen
+  // 1. the top cross is used to close the popup - i.e. the inbuilt functionality
+  //        in that case, the form is removed
+
+  // 2. clicking the close button destroys the form,
+  //		but then the on remove button will try to destroy it again and won't find it so will
+  // throw an error
+  try {
+    document.getElementById("petrolStationForm").remove();
+  } catch (e) {
+    // no need to do anything
+    // the error will happen as the 'on remove' event is triggered by the close or save events
+    // but they
   }
 }
 
@@ -137,17 +184,64 @@ function addPriceQueue() {
   }
   myFeatureGroup = L.featureGroup(priceQueueLayer)
     .on("click", (e) => {
-      $("#pricePetrolStationName").val(e.layer.options.title);
-      $("#petrolStationId").val(e.layer.options.code);
-      $("#platitude").val(e.latlng.lat);
-      $("#plongtitude").val(e.latlng.lng);
-      $("#priceQueue").modal("show");
+      // $("#priceQueue").modal("show");
+
+      // create a new Leaflet popup
+      let popup = L.popup({ minWidth: 450 });
+
+      // define some variables to store data that we need to use once we have the dialog HTML
+      // in this case the word  this refers to the marker that the user cliked on
+      // (in geneeral this in JavaScript events this is the element that received the event - which could be a button, a map, a div, a marker etc)
+
+      // we will load the dialog using an AJAX request
+      let formURL = "../dialogs/priceQueueForm.txt";
+      $.ajax({
+        url: formURL,
+        crossDomain: true,
+        success: function (result) {
+          console.log(result);
+          let form = result.toString();
+          // set the content of the popup to include the earthquake code identifier and then the form
+
+          // set an event to remove and destroy the form when the popup is closed
+          // this means that we don't end up with duplicate earthquakeCode DIVs
+          popup.on("remove", closePriceQueueForm);
+          // add some values to the pop up to show the coordinates
+          popup.setLatLng(e.latlng).setContent(form).openOn(mymap);
+          $("#pricePetrolStationName").val(e.layer.options.title);
+          $("#petrolStationId").val(e.layer.options.code);
+          $("#platitude").val(e.latlng.lat);
+          $("#plongtitude").val(e.latlng.lng);
+        },
+      });
     })
     .addTo(mymap);
   // fly to the markers
   // note that GeoJSON uses lng lat and leaflet uses lat lng so we have to reverse the order
 
   mymap.flyToBounds(markers, 18);
+}
+
+function closePriceQueueForm() {
+  // we need to destroy the form when the popup is closed
+  // so that we never end up with more than one DIV or INPUT box etc with the same ID (if the form is loaaded onto another earthquake point)
+  // use the remove() option to completely destroy the surrounding div and its contents
+
+  // this function is called by the close button but also by the on remove function which is triggered when the pop-up is closed
+  // two situations happen
+  // 1. the top cross is used to close the popup - i.e. the inbuilt functionality
+  //        in that case, the form is removed
+
+  // 2. clicking the close button destroys the form,
+  //		but then the on remove button will try to destroy it again and won't find it so will
+  // throw an error
+  try {
+    document.getElementById("priceQueueForm").remove();
+  } catch (e) {
+    // no need to do anything
+    // the error will happen as the 'on remove' event is triggered by the close or save events
+    // but they
+  }
 }
 
 /**
@@ -191,7 +285,6 @@ function submitPetrolStationForm() {
     url: baseUrlCRUD + queryString,
     crossDomain: true,
     success: function (result) {
-      document.getElementById("petrolStationForm").reset();
       $("#petrolStation").modal("hide");
       userId++;
       alert(decodeURI(JSON.stringify(result)));
@@ -241,7 +334,6 @@ function submitPriceQueueForm() {
     url: baseUrlCRUD + queryString,
     crossDomain: true,
     success: function (result) {
-      document.getElementById("priceQueueForm").reset();
       $("#priceQueue").modal("hide");
       priceUserId++;
       alert(decodeURI(JSON.stringify(result)));

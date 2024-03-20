@@ -1,0 +1,79 @@
+<div id="priceQueueForm">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Price / Queue</h1>
+      </div>
+      <div class="modal-body" >
+        <form >
+          <input type="text" class="form-control" id="petrolStationId" hidden>
+          <input type="text" class="form-control" id="priceUserId" hidden>
+          <input type="text" class="form-control" id="platitude" value="" hidden>
+          <input type="text" class="form-control" id="plongtitude" value="" hidden>
+          <div class="row mb-2">
+            <label for="pricePetrolStationName" class="col-sm-4 col-form-label">Petrol Station Name : </label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="pricePetrolStationName" value="">
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <label for="priceInspectionDate" class="col-sm-4 col-form-label">Inspection Date : </label>
+            <div class="col-sm-8">
+              <input type="date" class="form-control" id="priceInspectionDate">
+            </div>
+          </div>
+          <div class="row mb-2">
+          <label for="inspectionDate" class="col-sm-4 col-form-label"></label>
+            <div class="col-sm-8">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="queue" id="queue" checked value="Queue is very long (over 15 minutes)">
+                <label class="form-check-label" for="queue">
+                  Queue is very long (over 15 minutes)
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="queue" id="queue2" value="Queue is moderately long (between 10 and 15 minutes)">
+                <label class="form-check-label" for="queue2">
+                Queue is moderately long (between 10 and 15 minutes)
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="queue" id="queue3" value="Queue is OK (between 5 and 10 minutes)">
+                <label class="form-check-label" for="queue3">
+                Queue is OK (between 5 and 10 minutes)
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="queue" id="queue4" value="Queue is very short (less than 5 minutes)">
+                <label class="form-check-label" for="queue4">
+                Queue is very short (less than 5 minutes)
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="queue" id="queue5" value="No queue">
+                <label class="form-check-label" for="queue5">
+                No queue
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="queue" id="queue6" value="Unknown">
+                <label class="form-check-label" for="queue6">
+                  Unknown
+                </label>
+              </div>       
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <label for="price" class="col-sm-4 col-form-label">Price of Unleaded Petrol in £ per litre : </label>
+            <div class="col-sm-8">
+              <input type="number" class="form-control" name="price" id="price">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="submitPriceQueueForm()">Save</button>
+      </div>
+</div>
+
